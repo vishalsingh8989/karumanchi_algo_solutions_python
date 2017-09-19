@@ -32,7 +32,7 @@ class Node(object):
             raise Exception("Second argument should be either None or obj of class  Node")
         else:
             return super(Node, cls).__new__(cls, data, nextNode)
-    
+
     def __init__(self, data, nextNode):
         """check  validity of nextNode in __new__. If not valid then dont init.
         """
@@ -53,44 +53,42 @@ class Node(object):
         return self._data
 
 
+class LinkList:
+    """
+    """
+    def __init__(self):
+        self._head = None
+        
+    def insertAtBegin(self, data):
+        node  = Node(data, self._head) # create new node which will be newh head poitiong to previuos head and return new node(new head)
+        self._head = node
 
-def insertAtBegin(head, data):
-    node  = Node(data, head) # create new node which will be newh head poitiong to previuos head and return new node(new head)
-    
-    return node
+    def insertAtEnd(self, data):
+        temphead = self._head
+        while temphead is not None and temphead.getNext() is not None:
+            temphead = temphead.getNext()
+        
+        tempNode = Node(data, None)
+        temphead.setNext(tempNode)
+        
 
-def insertAtEnd(head, data):
-    temphead = head
-    while(temphead is not None and temphead.getNext() is not None and temphead.getNext().getNext() is not None ):
-        temphead=temphead.getNext()
-    print("At  %d"%(temphead.getData()))
-    tempNode = Node(data, temphead.getNext())
-    temphead.setNext(tempNode)
-    return head
-
-
-def printLinklist(head):
-    while(head.getData() is not None and head.getNext() is not None):
-        sys.stdout.write("%d  "%(head.getData()))
-        head = head.getNext()
-        if head.getData() is not None:
-            sys.stdout.write(" -> ")
-    print("")
-
-
-def CreateLinklist():
-    print(" Creating link list with empty head.")
-    return Node(None,None)
+    def printLinklist(self):
+        temphead = self._head
+        while temphead is not None:
+            sys.stdout.write("%d  "%(temphead.getData()))
+            temphead = temphead.getNext()
+            if temphead is not None:
+                sys.stdout.write(" -> ")
+        print("")
 
 
 if __name__ == "__main__":
-    head = CreateLinklist()
-    head = insertAtBegin(head, 10)
-    head = insertAtBegin(head, 20)
-    head = insertAtBegin(head, 30)
-    head = insertAtBegin(head, 40)
-    head = insertAtBegin(head, 50)
-    head = insertAtBegin(head, 60)
-    printLinklist(head)
+    linklist = LinkList()
+   
+    linklist.insertAtBegin(20)
+    linklist.insertAtBegin(30)
+    linklist.insertAtBegin(40)
+    linklist.insertAtBegin(50)
+    linklist.printLinklist()
 
 
