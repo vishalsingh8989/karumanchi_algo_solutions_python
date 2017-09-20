@@ -59,6 +59,39 @@ class LinkList:
     def __init__(self):
         self._head = None
         
+    def __call__(self):
+        print("__call__")
+
+    def __str__(self):
+        print("__str__")
+    
+    def __repr__(self):
+        """ method to represent object of class Linklist example: linklist = LinkList()
+        and then just print(linklist) will call __repr__ function
+        """
+        rpr = "["
+        temphead = self._head
+        while temphead is not None:
+            rpr = rpr+ "%d"%(temphead.getData())
+            temphead = temphead.getNext()
+            if temphead is not None:
+                rpr = rpr + ", "
+        rpr = rpr + " ]"
+        return rpr
+
+    def __getitem__(self, key):
+        if not isinstance(key, int):
+            raise Exception("KeyError: key should in integer.")
+        count = 0
+        temphead = self._head
+        while temphead is not None and count < key:
+            temphead = temphead.getNext()
+            count = count + 1
+        if count != key :
+            raise Exception("IndexError: index out of bound.")
+        else:
+            print(temphead.getData())
+
     def insertAtBegin(self, data):
         node  = Node(data, self._head) # create new node which will be newh head poitiong to previuos head and return new node(new head)
         self._head = node
@@ -67,24 +100,38 @@ class LinkList:
         temphead = self._head
         while temphead is not None and temphead.getNext() is not None:
             temphead = temphead.getNext()
-        
         tempNode = Node(data, None)
         temphead.setNext(tempNode)
         
+    def deleteHead(self):
+        temphead = self._head
+        if temphead is not None:
+            self._head = self._head.getNext()
+            del temphead
+    def deleteTail(self):
+        temphead = self._head
+        temppre = None
+        while temphead is not None and temphead.getNext() is not None:
+            temppre = temphead
+            temphead = temphead.getNext()
+        
+        temppre.setNext(None)
+        del temphead
 
     def printLinklist(self):
         temphead = self._head
+        sys.stdout.write("")
         while temphead is not None:
-            sys.stdout.write("%d  "%(temphead.getData()))
+            sys.stdout.write("%d"%(temphead.getData()))
             temphead = temphead.getNext()
             if temphead is not None:
                 sys.stdout.write(" -> ")
+        sys.stdout.write("")
         print("")
 
 
 if __name__ == "__main__":
-    linklist = LinkList()
-   
+    linklist = LinkList() 
     linklist.insertAtBegin(20)
     linklist.insertAtBegin(30)
     linklist.insertAtBegin(40)
