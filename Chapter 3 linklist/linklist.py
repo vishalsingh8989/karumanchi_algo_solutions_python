@@ -26,7 +26,6 @@ class Node(object):
         return wrapper
             
     def __new__(cls, data, nextNode):
-        print("In __new__")
         if not isinstance(nextNode, Node) and nextNode is not None :
             raise Exception("Second argument should be either None or obj of class  Node")
         else:
