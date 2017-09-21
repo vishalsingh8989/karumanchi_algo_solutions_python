@@ -8,9 +8,6 @@ __email__ = "jasrotia.vishal@stonybrook.edu"
 __status__ = ""
 
 
-
-
-
 #imports start
 import sys
 
@@ -93,6 +90,13 @@ class LinkList:
             raise Exception("IndexError: index out of bound.")
         else:
             print(temphead.getData())
+    def __len__(self):
+        count  = 0
+        temphead = self._head
+        while temphead is not None:
+            temphead = temphead.getNext()
+            count +=1
+        return count
 
     def insertAtBegin(self, data):
         node  = Node(data, self._head) # create new node which will be newh head poitiong to previuos head and return new node(new head)
@@ -118,6 +122,19 @@ class LinkList:
             temphead = temphead.getNext()
         
         temppre.setNext(None)
+        del temphead
+    def deleteAtPosition(self, pos):
+        """ delete at position. 
+        @Known issue: No handling for pos is more than length of the list.2 pos is 0
+        """
+        temphead = self._head
+        temppre=None
+        count = 0
+        while count < pos and temphead is not None and temphead.getNext() is not None:
+            temppre = temphead
+            temphead = temphead.getNext()
+            count = count + 1
+        temppre.setNext(temphead.getNext())
         del temphead
 
     def printLinklist(self):
