@@ -10,12 +10,10 @@ __status__ = ""
 
 #imports start
 import sys
-
-
 #import end
 
 class Node(object):
-    """ link list node 
+    """ single link list node
     """
     def validate(f):
         def wrapper(*args, **kwargs):
@@ -24,7 +22,7 @@ class Node(object):
             else:
                 f(*args,**kwargs)
         return wrapper
-            
+
     def __new__(cls, data, nextNode):
         if not isinstance(nextNode, Node) and nextNode is not None :
             raise Exception("Second argument should be either None or obj of class  Node")
@@ -36,7 +34,7 @@ class Node(object):
         """
         self._data     = data
         self._nextNode = nextNode
-    
+
     @validate
     def setNext(self, nextNode):
         self._nextNode = nextNode
@@ -56,13 +54,13 @@ class LinkList:
     """
     def __init__(self):
         self._head = None
-        
+
     def __call__(self):
         print("__call__")
 
     def __str__(self):
         print("__str__")
-    
+
     def __repr__(self):
         """ method to represent object of class Linklist example: linklist = LinkList()
         and then just print(linklist) will call __repr__ function
@@ -107,23 +105,51 @@ class LinkList:
             temphead = temphead.getNext()
         tempNode = Node(data, None)
         temphead.setNext(tempNode)
-        
+
+    def insertAtPosition(self, data, position):
+        if self._head is None:
+            self._head= Node(data, None)
+        else:
+            count = 0
+            temphead = self._head
+            while temphead.getNext() is not None and count < position - 1:
+                temphead = temphead.getNext()
+                count+=1
+            if position == 0 : #newNode is now head, if added at 0 position
+                newNode = Node(data, temphead)
+                self._head = newNode
+            else:
+                newNode = Node(data, temphead.getNext())
+                temphead.setNext(newNode)
+
     def deleteHead(self):
-        temphead = self._head
-        if temphead is not None:
-            self._head = self._head.getNext()
-            del temphead
+        if self._head is None:
+            print("list is empty")
+        else:
+            temphead = self._head
+            if temphead is not None:
+                self._head = self._head.getNext()
+                del temphead
+            else:
+                self._head = None
     def deleteTail(self):
-        temphead = self._head
-        temppre = None
-        while temphead is not None and temphead.getNext() is not None:
-            temppre = temphead
-            temphead = temphead.getNext()
-        
-        temppre.setNext(None)
-        del temphead
+        if self._head is None:
+           print("list is empty")
+        else:
+            temphead = self._head
+            temppre = None
+            while temphead is not None and temphead.getNext() is not None:
+                temppre = temphead
+                temphead = temphead.getNext()
+            if temppre is not None: # where list had only one element
+                temppre.setNext(None)
+            else:  #list had only one element
+                self._head = None
+            del temphead
+            del temppre
+
     def deleteAtPosition(self, pos):
-        """ delete at position. 
+        """ delete at position.
         @Known issue: No handling for pos is more than length of the list.2 pos is 0
         """
         temphead = self._head
@@ -149,11 +175,9 @@ class LinkList:
 
 
 if __name__ == "__main__":
-    linklist = LinkList() 
+    linklist = LinkList()
     linklist.insertAtBegin(20)
     linklist.insertAtBegin(30)
     linklist.insertAtBegin(40)
     linklist.insertAtBegin(50)
     linklist.printLinklist()
-
-

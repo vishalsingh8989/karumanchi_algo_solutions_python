@@ -11,6 +11,7 @@ def karumanchi_hanoi(numofdisk , startpeg=1, endpeg=3):
         print("Move %d  disk from %d to %d."%(numofdisk, startpeg, endpeg))
         karumanchi_hanoi(numofdisk-1, 6-startpeg-endpeg, endpeg)
 
+
 hanoi(3)
 print("******************")
 karumanchi_hanoi(3)
