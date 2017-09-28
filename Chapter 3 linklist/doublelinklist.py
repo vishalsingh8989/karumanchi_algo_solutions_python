@@ -87,6 +87,23 @@ class DoubleLinklist:
             self._tail.setNext(tempnode)
             self._tail = tempnode
 
+    def insertAtPosition(self, data, position):
+        if self._head is None:
+            self.insertAtBegin(data)
+        else:
+            currentPosition = 0
+            temp = self._head
+            while temp is not None and currentPosition < position:
+                temp = temp.getNext()
+                currentPosition+=1
+            if temp is None:
+                raise Exception("List len is less than position")
+            else:
+                newNode = Node(data, temp, temp.getPrev())
+                newNode.getPrev().setNext(newNode)
+                temp.setPrev(newNode)
+
+
     def deleteFromPosition(self, position):
         if self._head is None or self._tail is None:
             print("list is empty")
@@ -118,7 +135,10 @@ class DoubleLinklist:
                 temp.getNext().setPrev(temp.getPrev())
                 del temp
 
-
+    def deleteHead(self):
+        self.deleteFromPosition(0)
+    def deleteTail(self):
+        self.deleteFromPosition(len(self))
 
     def printFromStart(self):
         """print list element from start.
@@ -185,6 +205,16 @@ if __name__ == "__main__":
     dlist.printFromEnd()
     print("Delete from postion test")
     dlist.deleteFromPosition(1)
+    dlist.printFromStart()
+    dlist.printFromEnd()
+
+    print("Delete head tail test")
+    dlist.deleteHead()
+    dlist.deleteTail()
+    dlist.printFromStart()
+    dlist.printFromEnd()
+    print("Insert At position test")
+    dlist.insertAtPosition(70,2 )
     dlist.printFromStart()
     dlist.printFromEnd()
 
