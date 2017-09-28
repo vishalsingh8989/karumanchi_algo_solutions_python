@@ -106,23 +106,28 @@ class DoubleLinklist:
             else:
                 self._head = None
         else:
-
-
             currentPosition = 0
             temp = self._head
-            while temp is not None and currentPostion < position - 1 :
-                currentPostion+=1
+            while temp is not None and currentPosition < position  :
+                currentPosition+=1
                 temp = temp.getNext()
             if temp is None:
                 raise Exception("List len is less than position.")
             else:
                 temp.getPrev().setNext(temp.getNext())
-
+                temp.getNext().setPrev(temp.getPrev())
+                del temp
 
 
 
     def printFromStart(self):
+        """print list element from start.
+        """
+        if self._head is None:
+            print("List is empty")
+            return
         temphead = self._head
+            
         while temphead is not None:
             sys.stdout.write("%d"%temphead.getData())
             temphead = temphead.getNext()
@@ -131,6 +136,9 @@ class DoubleLinklist:
         print("")
 
     def printFromEnd(self):
+        if self._tail is None:
+            print("List is empty")
+            return
         temptail = self._tail
         while temptail is not None:
             sys.stdout.write("%d"%temptail.getData())
@@ -144,12 +152,40 @@ if __name__ == "__main__":
     dlist  = DoubleLinklist()
     dlist.insertAtBegin(10)
     dlist.insertAtBegin(20)
-    dlist.insertAtBegin(30)
+    dlist.insertAtEnd(30)
     dlist.insertAtBegin(40)
     dlist.insertAtEnd(0)
+    dlist.printFromStart()
+    dlist.printFromEnd()
+    dlist.deleteFromPosition(5)
     dlist.printFromStart()
     dlist.printFromEnd()
     dlist.deleteFromPosition(0)
     dlist.printFromStart()
     dlist.printFromEnd()
+
+    dlist.deleteFromPosition(0)
+    dlist.printFromStart()
+    dlist.printFromEnd()
+    dlist.deleteFromPosition(0)
+    dlist.printFromStart()
+    dlist.printFromEnd()
+    dlist.deleteFromPosition(0)
+    dlist.printFromStart()
+    dlist.printFromEnd()
+    
+    dlist.insertAtBegin(10)
+    dlist.insertAtEnd(20)
+    dlist.insertAtBegin(0)
+    dlist.insertAtEnd(30)
+    dlist.insertAtEnd(40)
+    dlist.insertAtEnd(50)
+
+    dlist.printFromStart()
+    dlist.printFromEnd()
+    print("Delete from postion test")
+    dlist.deleteFromPosition(1)
+    dlist.printFromStart()
+    dlist.printFromEnd()
+
     print("bye bye")
