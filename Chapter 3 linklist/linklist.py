@@ -174,6 +174,9 @@ class LinkList:
         print("")
 
 
+    def getHead(self):
+        return self._head
+
 if __name__ == "__main__":
     linklist = LinkList()
     linklist.insertAtBegin(20)

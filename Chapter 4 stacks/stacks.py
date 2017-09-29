@@ -13,50 +13,52 @@ import sys
 class Node:
     def validate(f):
         def inner(*args, **kwargs):
-            if isinstance(args[0], Node) or args[0] is None:
-                f(*args, **kwargs)
-            else:
-                raise Exception("init_error")
-        return inner
+            f(*args, **kwargs)
 
-    def __new__(cls, data, nextNode):
-        if isinstance(nextNode, Node) or nextNode is None:
-            return super(Node, cls).__new__(cls, data,nextNode)
-        else:
-            raise Exception("init error")
+        return inner
 
     def __init__(self, data, nextNode):
         self._data=data
         self._nexNode = nextNode
 
-    @validate
-    def setNext(self, nextNode):
-        self._nextNode = nextNode
-
-    def getNext(self):
-        return self._nextNode
-
-    def getData(self):
-        return self._data
 
 class Stack:
+    """implementation of stack using python builtin list. 
+        Stack can be implemeted using above node class.
+    """
     def __init__(self):
-        self._top = None
-    def push(self, data):
-        if self._top is None:
-            self._top  = Node(data, None)
-        else:
-            newNode = Node(data, self._top)
-            self._top = newNode
+        self._stack = []
+
     def pop(self):
-        if self._top is None:
+        if len(self._stack) == 0:
             raise Exception("Stack is empty")
-        else:
-            temp = self._top
-            self._top = self._top.getNext()
-            return temp.getData()
+        data = self._stack.pop(0)
+        return data
+
+    def push(self, data):
+        self._stack.insert(0, data)
+    
     def peek(self):
-        if self._top is None:
-            pass
-        else:
-            te
+        return self._stack[0]
+
+    def printstack(self):
+        for x in self._stack:
+            print("+----------------+")
+            print("|       %d        |"%x)
+        print("------------------")
+
+if __name__ == "__main__":
+    stack = Stack()
+    print("psuh 6,5,4,3 and print stack")
+    stack.push(6)
+    stack.push(5)
+    stack.push(4)
+    stack.push(3)
+    stack.printstack()
+    print("Top is : %d"%stack.pop())
+    print("print after pop")
+    stack.printstack()
+    print("Peek top : %d "%stack.pop())
+    
+
+
