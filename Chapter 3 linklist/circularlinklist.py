@@ -58,13 +58,11 @@ class CircularList:
         return count #count tail
 
     def insertAtPosition(self, data, position):
-        print(len(self))
         lenght = len(self)
         if self._tail is None:
             self._tail = Node(data, None)
             self._tail.setNext(self._tail)
         else:
-            print("tail %d"%self._tail.getData()) 
             temp = self._tail if position == 0 else self._tail.getNext()
             currentPosition = 0
             while temp is not self._tail and currentPosition<position - 1:
@@ -73,7 +71,6 @@ class CircularList:
             if temp is None:
                 raise Exception("List len is less than position ")
             else:
-                print("insert %d after %d, %d"%(data,temp.getData(), currentPosition ))
                 newnode = Node(data, None)
                 newnode.setNext(temp.getNext())
                 temp.setNext(newnode)
@@ -88,36 +85,31 @@ class CircularList:
 
 
     def deleteAtPosition(self, position):
-        if self._head is None:
+        lenght = len(self)
+        if self._tail is None:
             print("List is empty")
             return 
-        elif self._head == self._tail:
-            self._head = None
+        elif self._tail == self._tail.getNext():
+            print("last element deleted")
             self._tail = None
         else:
+            temp = self._tail if position == 0 else self._tail.getNext()
             currentPosition = 0 
-            temp = self._head
-            while temp is not None and currentPosition < position - 1:
-                temp = temp.getNext()
+            while temp is not self._tail and currentPosition<position - 1:
                 currentPosition+=1
-            print("At %d"%temp.getData())
+                temp = temp.getNext()
             if temp is None:
-                raise Exception("List len is less than position.")
+                raise Exception("List len is less than position")
             else:
+                nextnode = temp.getNext()
                 if position == 0:
-                    self._head = self._head.getNext()
-                    self._tail.setNext(self._head)
-                    del temp
-                elif position == len(self)- 1:
-                    print("in elif")
-                    temp.setNext(self._head)
-                    self._tail = temp
+                    self._tail.setNext(self._tail.getNext().getNext())
                 else:
-                    print("in else")
-                    tempnext = temp.getNext()
-                    temp.setNext(tempnext.getNext())
-                    del tempnext
-
+                    #pass
+                    temp.setNext(nextnode.getNext())
+                if position == lenght - 1:
+                    print("last element deleted")
+                    self._tail = temp
 
     def printlist(self):
         if self._tail is None:
@@ -126,13 +118,13 @@ class CircularList:
             print(self._tail.getData())
         else:
             print("***********************")
-            print(self._tail.getData())
             temp = self._tail.getNext()
-            while temp is not self._tail:
-                sys.stdout.write("%d"%temp.getData())
+            while temp != self._tail:
+                sys.stdout.write("%d "%(temp.getData()))
+                #sys.stdout.write("%d, %s"%(temp.getData(), temp))
                 temp = temp.getNext()
-                sys.stdout.write(" -> ")
-            sys.stdout.write("%d"%temp.getData())
+                sys.stdout.write(" --> ")
+            sys.stdout.write("%d"%(temp.getData()))
         print("")            
 if __name__ == "__main__":
     cl = CircularList()
@@ -140,20 +132,26 @@ if __name__ == "__main__":
     cl.insertAtPosition(10, 0)
     cl.insertAtPosition(20, 0)
     cl.insertAtPosition(30, 0)
+    cl.printlist()
+    
     cl.insertAtPosition(40, 0)
     cl.insertAtPosition(15,4)
     cl.insertAtPosition(-10, 6)
     lenght = len(cl)
-    print("len of list %d"%lenght)
     cl.insertAtPosition(-20, lenght )
-    #cl.insertAtPosition(-30, 9)
+    cl.insertAtPosition(-30, 8)
     
-    #cl.insertAtBegin(50)
-    #cl.insertAtEnd(-40)
+    cl.insertAtBegin(50)
+    cl.insertAtEnd(-40)
     
     cl.printlist()
     print("Delete test %d"%len(cl) )
     cl.deleteAtPosition(0)
     cl.printlist()
-    cl.deleteAtPosition(9)
+    print("delete 2th element")
+    cl.deleteAtPosition(2)
     cl.printlist()
+    print("delete 8th element")
+    cl.deleteAtPosition(8)
+    cl.printlist()
+
