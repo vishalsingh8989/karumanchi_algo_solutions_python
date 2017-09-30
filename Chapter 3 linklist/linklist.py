@@ -42,7 +42,7 @@ class Node(object):
     def getNext(self):
         return self._nextNode
 
-    def setData(self, _data):
+    def setData(self, data):
         self._data = data
 
     def getData(self):
