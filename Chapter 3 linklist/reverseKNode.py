@@ -18,21 +18,22 @@ from linklist import *
 
 def reverseKNode(head, k ): 
 
-    current = head;
-    nextnode = prevnode = None
+    current  = head
+    prevnode =  nextnode = None
     count = 0
-    while current is not None and count <  k:
+    while current is not None and count < k:
         nextnode = current.getNext()
         current.setNext(prevnode)
         prevnode = current
         current  = nextnode
-        count += 1
+        count +=1
 
     if nextnode is not None:
         temp = reverseKNode(nextnode, k)
         head.setNext(temp)
-    return prevnode
 
+    return prevnode
+        
 
     
 
