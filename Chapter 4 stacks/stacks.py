@@ -41,10 +41,13 @@ class Stack:
     def peek(self):
         return self._stack[0]
 
+    def size(self):
+        return  len(self._stack)
+
     def printstack(self):
         for x in self._stack:
             print("+----------------+")
-            print("|       %d        |"%x)
+            print("|       %s        |"%str(x))
         print("------------------")
 
 if __name__ == "__main__":
