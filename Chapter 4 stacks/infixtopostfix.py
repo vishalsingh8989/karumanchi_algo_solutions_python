@@ -6,7 +6,7 @@ __version__ = "1.0"
 __maintainer__ = "Vishal Jasrotia"
 __email__ = "jasrotia.vishal@stonybrook.edu"
 __status__ = ""
-__problem__ = 1
+__problem__ = 2
 
 import sys
 from stacks import *
@@ -34,11 +34,11 @@ def infixToPostfix(equation = ""):
     stack = Stack()
     for charac in equation:
         #stack.printstack()
-        if charac.isalpha():
+        if charac.isalpha(): # if operand then print
             sys.stdout.write("%s"%charac)
-        elif charac == "(":
+        elif charac == "(": # if opening bracket then push to stack
             stack.push(charac)
-        elif charac == ")":
+        elif charac == ")": #if closing bracket then pop till opening bracket
             while stack.size() !=0 and stack.peek() != '(':
                 top = stack.pop()
                 sys.stdout.write("%s"%top)
