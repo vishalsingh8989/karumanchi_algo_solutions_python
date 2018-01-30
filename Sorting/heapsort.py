@@ -18,35 +18,34 @@ def heapify(nums, i, size):
     
     if largest != i:
         nums[i] , nums[largest] = nums[largest], nums[i]
-        heapify(nums, largest)
+        heapify(nums, largest, size)
 
 
 def heapsort(nums):
     
-    for i in xrange(len(nums), -1, -1):
-        heapify(nums, i)
+    size =  len(nums)
+    for i in xrange(size, -1, -1):
+        heapify(nums, i, size)
     
+    for i in xrange(size - 1, 0, -1):
+        nums[i] , nums[0] = nums[0], nums[i]  #<- move largest to last and 
+        heapify(nums, 0, i) # <-- heapify from 0 again. ignore the last element this time by size = i 
     
-    
-    print(nums, max(nums))
-
 
 if __name__ == "__main__":
     
     res = []
     start = time.time()
-    nums = [random.randint(-10,20) for _ in xrange(10)]
-    print(nums)
-    heapsort(nums)
-#     for _ in xrange(10000):
-#         size = random.randint(1,100)
-#         nums = [random.randint(-10,20) for _ in xrange(size)]
-#         heapsort(nums)
-#         #print(nums)
-#         res.append(test(nums))
-#     
-#    
-#     end = time.time()
-#     print("%s Pass."%(res.count(True)))
-#     print("%s Fail."%(res.count(False)))
-#     print("Time :  %s"%(end-start))
+   
+    for _ in xrange(10000):
+        size = random.randint(1,100)
+        nums = [random.randint(-10,20) for _ in xrange(size)]
+        heapsort(nums)
+        #print(nums)
+        res.append(test(nums))
+     
+     
+    end = time.time()
+    print("%s Pass."%(res.count(True)))
+    print("%s Fail."%(res.count(False)))
+    print("Time :  %s"%(end-start))
