@@ -4,35 +4,40 @@ from sorttest import test
 import random
 import time
 
+
 def partition(nums, low, high):
     """
     """
     pivot = nums[low]
-    i = low 
-    j = high 
-    
-    while True: 
-        while i <= high and pivot >=  nums[i]:
+    i = low
+    j = high
+
+    while True:
+        
+        while i < high and pivot >= nums[i]:
             i +=1
-        while pivot <  nums[j]:
+        
+        while j > low and pivot < nums[j]:
             j -=1
-        if i>=j:
-            break    
+        
+        if i >= j:
+            break
+        
         nums[i] , nums[j] = nums[j], nums[i]
     
+    nums[low], nums[j] = nums[j], nums[low]
     
-    nums[low] , nums[j] = nums[j], nums[low]
     return j
-
-
-def quicksort(nums, low, high):
-    
-    if low< high:
         
+def quicksort(nums, low, high):
+    """
+    """
+    
+    if low < high:
         p = partition(nums, low, high)
-        #print("Partiton :  %s"%(p))
         quicksort(nums, low, p - 1)
-        quicksort(nums,p + 1, high)
+        quicksort(nums, p + 1, high)
+    
     
     
 
