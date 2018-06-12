@@ -4,6 +4,8 @@
 import random
 from sorttest import test
 
+
+
 def selection(nums):
     """ pick small and put in front.
     """
@@ -20,10 +22,10 @@ def selection(nums):
 
 if __name__ =="__main__":
     res = [] 
-    for i in xrange(100):
+    for i in xrange(1000):
         
         nums = [random.randint(-10, 40) for x in xrange(100)]
-        selection(nums)
+        select(nums)
         res.append(test(nums))
     
     print("%s Pass."%(res.count(True)))

@@ -45,10 +45,10 @@ if __name__ =="__main__":
     
     res = []
     start = time.time()
-    for _ in xrange(10000):
+    for _ in xrange(1000):
         size = random.randint(1,100)
         nums = [random.randint(-10,20) for _ in xrange(size)]
-        quicksort(nums, 0, len(nums) - 1)
+        quick(nums, 0, len(nums) - 1)
         #print(nums)
         res.append(test(nums))
     

@@ -2,8 +2,10 @@
 import random
 from sorttest import test
 import time
-def bubbleSort(nums):
+
+
     
+def bubbleSort(nums):  
     size = len(nums)
     for i in xrange(size):
         for j in xrange(i+1, size):
@@ -17,7 +19,7 @@ if __name__ == "__main__":
     
     res = []
     start = time.time()
-    for _ in xrange(10000):
+    for _ in xrange(1000):
         size = random.randint(1,100)
         nums = [random.randint(-10,20) for _ in xrange(size)]
         bubbleSort(nums)

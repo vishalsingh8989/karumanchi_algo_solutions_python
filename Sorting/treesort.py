@@ -5,6 +5,7 @@
 from sorttest import test
 import random
 import time
+from platform import node
 
 class TreeNode:
     def __init__(self, val):
@@ -12,13 +13,14 @@ class TreeNode:
         self.left_child = None
         self.right_child = None
 
+
+#iterative
 def insert(root, val):
     
     if root is None:
         node = TreeNode(val)
         return node
     else:
-        
         temp = root
         while True:
             if val <=  temp.val:
@@ -45,18 +47,28 @@ def inorder(root, res):
         inorder(root.right_child, res)
 
 
-
-
+#recursive
+def putin(root, val):
+    if root is None:
+        node = TreeNode(val)
+        return node
+    else:
+        if val <=  root.val:
+            root.left_child = putin(root.left_child, val)    
+        else:
+            root.right_child = putin(root.right_child, val)       
+        return root
+    
 if __name__ == "__main__":
     res = []
     start = time.time()
-    for _ in xrange(10000):
-        size = random.randint(1,100)
-        nums = [random.randint(-10,20) for _ in xrange(size)]
+    for _ in xrange(1000):
+        size = random.randint(1,1000)
+        nums = [random.randint(-10,30) for _ in xrange(size)]
         root = None
         
         for x in nums:
-            root = insert(root, x)
+            root = putin(root, x)
             
         sortlist = []
         inorder(root, sortlist)
