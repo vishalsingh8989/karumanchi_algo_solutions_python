@@ -11,8 +11,19 @@ __status__ = ""
 from linklist import Node
 import sys
 import random
+import time
 
-
+def test(root):
+    node = root
+    prev = node.getData()
+    node = node.getNext()
+    while node is not None:
+        if prev > node.getData():
+            return False
+        prev = node.getData()
+        node = node.getNext()
+    return True
+    
 
 def getLength(root):
     count = 0
@@ -40,7 +51,6 @@ def merge(node_a, node_b):
         
 def mergesort(node):
     mid = getLength(node)/2
-    
     first_head = node
     if node.getNext() is None:
         return node
@@ -75,17 +85,25 @@ def walk(head):
         head = head.getNext()
 
 if __name__ == "__main__":
-    nums = [20, 1, 9, 15, 12, 3, 2, 11, 2, 8, 12, 13, 7, 3, 3, 5, 11, 4, 9, 2]
-    
-    root = mklist(nums)
-    for x in walk(root):
-        print(str(x) + " -> ", end='')
-    print(len(nums), getLength(root))
-    
-    root = mergesort(root)
-    for x in walk(root):
-        print(str(x) + " -> ", end='')
-    print(len(nums), getLength(root))
+
+    res = []
+    start = time.time()
+    for _ in xrange(2000):
+        size = random.randint(1,100)
+        nums = [random.randint(-10,200) for _ in xrange(size)]
+        root = mklist(nums)
+        root = mergesort(root)
+        #print(nums)
+        res.append(test(root))
+     
+     
+    end = time.time()
+    print("%s Pass."%(res.count(True)))
+    print("%s Fail."%(res.count(False)))
+    print("Time :  %s"%(end-start))
+
+
+
      
     
         
