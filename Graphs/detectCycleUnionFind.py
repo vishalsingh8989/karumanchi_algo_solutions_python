@@ -1,5 +1,11 @@
-# Python Program for union-find algorithm to detect cycle in a undirected graph
-# we have one egde for any two vertex i.e 1-2 is either 1-2 or 2-1 but not both
+#!/usr/bin/python
+__author__ = "Vishal Jasrotia. Stony Brook University"
+__copyright__ = ""
+__license__ = "GPL"
+__version__ = "1.0"
+__maintainer__ = "Vishal Jasrotia"
+__email__ = "jasrotia.vishal@stonybrook.edu"
+__status__ = ""
   
 from collections import defaultdict
   

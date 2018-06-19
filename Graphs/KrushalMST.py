@@ -15,6 +15,15 @@ Below are the steps for finding MST using Kruskal’s algorithm
 3. Repeat step#2 until there are (V-1) edges in the spanning tree.
 
 """
+
+
+__author__ = "Vishal Jasrotia. Stony Brook University"
+__copyright__ = ""
+__license__ = "GPL"
+__version__ = "1.0"
+__maintainer__ = "Vishal Jasrotia"
+__email__ = "jasrotia.vishal@stonybrook.edu"
+__status__ = ""
 from _collections import defaultdict
 
 
