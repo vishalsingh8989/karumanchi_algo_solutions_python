@@ -23,7 +23,7 @@ class Graph:
     
     def minDistance(self, dist, sptSet):
         min = sys.maxint
-        
+        # heap can be used for  finding min
         for v in xrange(len(dist)):
             if min >= dist[v]  and sptSet[v] == False:
                 min = dist[v]
