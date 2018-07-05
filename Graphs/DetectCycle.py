@@ -52,8 +52,10 @@ class Graph:
         return self.dfsUtil(visited, 0)   
 
     
-    # this one is accurate. dfs wont give correct for one self loop.
-    def isCylce(self):
+    
+    def isCyclic(self):
+        """https://www.geeksforgeeks.org/union-find/
+        """
         parent = [-1]*self.V
         
         for u in xrange(self.V):
@@ -71,14 +73,14 @@ if __name__ == "__main__":
     g = Graph(5)
     g.addEdge(0, 1)
     g.addEdge(0, 2)
-    g.addEdge(1, 3)
+    g.addEdge(1, 2)
     #g.addEdge(1, 2)
     #g.addEdge(2, 0)
     #g.addEdge(2, 3)
-    g.addEdge(3, 3)
+    #g.addEdge(3, 3)
     
     
-    print(g.isCylce())
+    print(g.isCyclic())
     print(g.dfs())
         
         
