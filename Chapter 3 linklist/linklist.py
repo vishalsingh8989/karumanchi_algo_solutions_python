@@ -1,4 +1,5 @@
 #!/usr/bin/python
+from __future__ import print_function
 __author__ = "Vishal Jasrotia. Stony Brook University"
 __copyright__ = ""
 __license__ = "GPL"
@@ -12,6 +13,24 @@ __status__ = ""
 import sys
 #import end
 
+def printlist(head):
+    print("\nLink list :" ,end = " : ")
+    while head is not None:
+        print(head.data, end = " -> ")
+        head = head.next
+        
+class SimpleNode:
+    def __init__(self, data, next):
+        self.data = data
+        self.next = next
+    
+    def __repr__(self):
+        if self.next is None:
+            rpr = " [ "+str(self.data) + ", next(None) ] "
+        else:
+            rpr = " [ "+str(self.data) + ", next("+str(self.next.data)+") ] "
+        return rpr
+        
 class Node(object):
     """ single link list node
     """
@@ -77,7 +96,7 @@ class LinkList:
 
     def __getitem__(self, key):
         if not isinstance(key, int):
-            raise Exception("KeyError: key should in integer.")
+            raise Exception("KeyError: key should integer.")
         count = 0
         temphead = self._head
         while temphead is not None and count < key:

@@ -34,7 +34,7 @@ print(a)
 slowtemp = n
 fasttemp = n
 #detect and print 
-while slowtemp is not None  and fasttemp is not None :
+while fasttemp is not None  and fasttemp.getNext() is not None :
     sys.stdout.write("%d"%slowtemp.getData())
     slowtemp = slowtemp.getNext()
     fasttemp = fasttemp.getNext().getNext()

@@ -137,8 +137,8 @@ if __name__ == "__main__":
     cl.insertAtPosition(40, 0)
     cl.insertAtPosition(15,4)
     cl.insertAtPosition(-10, 6)
-    lenght = len(cl)
-    cl.insertAtPosition(-20, lenght )
+    length = len(cl)
+    cl.insertAtPosition(-20, length )
     cl.insertAtPosition(-30, 8)
     
     cl.insertAtBegin(50)

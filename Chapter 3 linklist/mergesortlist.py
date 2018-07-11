@@ -32,44 +32,39 @@ def getLength(root):
         root = root.getNext()
     return count
 
-
 def merge(node_a, node_b):
-    head = None
     if node_a is None:
         return node_b
     if node_b is None:
         return node_a
-    if node_a.getData() >= node_b.getData():
+    
+    if node_a.getData() >=  node_b.getData():
         head = node_b
-        next_node = merge(node_a, node_b.getNext())
-        node_b.setNext(next_node)
+        head.setNext(merge(node_a, node_b.getNext()))
+        return head
     else:
         head = node_a
-        next_node = merge(node_a.getNext(), node_b)
-        node_a.setNext(next_node)
-    return head
-        
-def mergesort(node):
-    mid = getLength(node)/2
-    first_head = node
-    if node.getNext() is None:
-        return node
-    
-    while mid - 1 > 0:
-        first_head = first_head.getNext()
-        mid -= 1
-    
-    second_head = first_head.getNext()
-    
-    first_head.setNext(None)
-    first_head = node
-    
-    node_a = mergesort(first_head)
-    node_b = mergesort(second_head)
-    
-    return merge(node_a, node_b)
-    
+        head.setNext(merge(node_a.getNext(), node_b))
+        return head
 
+def mergesort(head):
+    mid = getLength(head)/2
+
+    first_node = head
+    if head.getNext() is None:
+        return head
+    while mid - 1 > 0:
+        first_node =  first_node.getNext()
+        mid -=1
+    
+    second_node = first_node.getNext()
+    first_node.setNext(None)
+    first_node = head
+    
+    node_a = mergesort(first_node)
+    node_b = mergesort(second_node)
+    
+    return merge(node_a, node_b)    
         
 def mklist(initializer):
     head = temp = Node(initializer[0], None)
