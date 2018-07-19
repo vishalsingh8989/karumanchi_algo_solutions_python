@@ -12,13 +12,46 @@ __status__ = ""
 #imports start
 import sys
 #import end
+def isLinkListSorted(head):
+    
+    while head.next is not None:
+        
+        if head.data >  head.next.data:
+            return False
+        head = head.next
+        
+    return True
 
 def printlist(head):
     print("\nLink list :" ,end = " : ")
-    while head is not None:
-        print(head.data, end = " -> ")
+    start = head
+    while head is not None and head.next is not start:
+        print(head, end = " -> ")
         head = head.next
-        
+    if head is not None:
+        print(str(head.data) + " -> start", end = " -> ")
+    print()   
+       
+class DoubleNode:
+    def __init__(self, data, prev, next):
+        self.data = data
+        self.next = next
+        self.prev = prev
+     
+    def __repr__(self):
+        if self.next is None:
+            next =  "next(None)"
+        else:
+            next = "next(" +str(self.next.data)+ ")"
+             
+        if self.prev is None:
+            prev = "prev(None)"
+        else:
+            prev = "prev(" +str(self.prev.data)+ ")"
+            
+        rpr = "[ " + prev + ", " +str(self.data) + ", " + next + " ]" 
+        return rpr
+     
 class SimpleNode:
     def __init__(self, data, next):
         self.data = data

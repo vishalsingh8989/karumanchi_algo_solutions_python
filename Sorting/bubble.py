@@ -5,12 +5,15 @@ import time
 
 
     
-def bubbleSort(nums):  
+def bubblesort(nums):
     size = len(nums)
     for i in xrange(size):
-        for j in xrange(i+1, size):
-            if nums[i]  >  nums[j]:
-                nums[i], nums[j] = nums[j],nums[i]
+        for j in xrange(size):
+            if nums[j] > nums[i]:
+                nums[i], nums[j] = nums[j], nums[i]
+        
+    return nums 
+
 
 
 
@@ -19,13 +22,14 @@ if __name__ == "__main__":
     
     res = []
     start = time.time()
-    for _ in xrange(1000):
-        size = random.randint(1,100)
-        nums = [random.randint(-10,20) for _ in xrange(size)]
-        bubbleSort(nums)
+    
+    for i in xrange(1000):
+        size = random.randint(2, 1000)
+        nums = [random.randint(-10, 1000) for _ in xrange(size)]
+        #print(nums)
+        nums = bubblesort(nums)
         #print(nums)
         res.append(test(nums))
-    
    
     end = time.time()
     print("%s Pass."%(res.count(True)))

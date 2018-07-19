@@ -1,8 +1,36 @@
 """Complexity O(n^2)
 """
 
-def findlonPallindrome(word):
 
+
+def findLongPallindromeOpt(word):
+    """Complexity O(n^2)
+    """
+    wordone = word
+    wordtwo = word[::-1]
+    #print(wordone)
+    #print(wordtwo)
+    
+    sizex = len(word)
+    sizey = len(word)
+    table = [[0] * (sizex + 1) for _ in xrange(sizey + 1)]
+    
+    max_length = 1
+    end_idx = 1
+    for i in xrange(1, sizex):
+        for j in xrange(1, sizey):
+            if wordtwo[i] == wordone[j]:
+                table[i][j] = table[i-1][j-1] + 1 
+                if table[i][j] >  max_length:
+                    max_length = table[i][j]
+                    end_idx = i 
+    for row in table:
+        print(row)
+    return word[end_idx - max_length :end_idx ]
+
+def findlonPallindrome(word):
+    """Complexity O(n^2)
+    """
     table = [[False]*len(word) for x in xrange(len(word))]
 
     #for x in xrange(len(word)):
@@ -41,8 +69,12 @@ def findlonPallindrome(word):
 if __name__ == "__main__":
     word = "forgeeksskeegfor"
     #find(word)
-    #word = "ababababcbcbcbc"
-    find(word)
-    longestPalSubstr(word)
+    word = "ababababcbcbcbc"
+    word = "aa"
+    word = "babcbabcbaccba"
+    pallin = findlonPallindrome(word)
+    print(pallin)
+    pallin = findLongPallindromeOpt(word)
+    print(pallin)
     
     

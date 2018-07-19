@@ -34,25 +34,28 @@ def iterativeQuickSort(nums, low, high):
     stack.append(low)
     stack.append(high)
     
-    while len(stack) > 0: 
+    
+    while stack :
         h = stack.pop()
         l = stack.pop()
         
         p = partition(nums, l, h)
         
+        if p + 1 <  h:
+            stack.append(p+1)
+            stack.append(h)
         if p - 1 > l:
             stack.append(l)
-            stack.append(p-1)
-        if p + 1 < h:
-            stack.append(p + 1)
-            stack.append(h)
+            stack.append(p - 1)
+            
+             
             
                    
 if __name__ =="__main__":
     
     res = []
     start = time.time()
-    for _ in xrange(10000):
+    for _ in xrange(1000):
         size = random.randint(1,100)
         nums = [random.randint(-10,20) for _ in xrange(size)]
         iterativeQuickSort(nums, 0, len(nums) - 1)

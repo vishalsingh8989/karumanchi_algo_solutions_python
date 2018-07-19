@@ -9,23 +9,20 @@ from sorttest import test
 def selection(nums):
     """ pick small and put in front.
     """
-    
-    for i in xrange(len(nums)):
+    size = len(nums)
+    for i in xrange(size):
         min_idx = i
-        j = i+1
-        while j < len(nums):
-            if nums[j] <  nums[min_idx]:
+        for j in xrange(i+1, size):
+            if nums[min_idx] > nums[j]:
                 min_idx = j
-            j = j + 1
-        nums[i], nums[min_idx] = nums[min_idx], nums[i]
-    
+        nums[i] , nums[min_idx] = nums[min_idx], nums[i] 
 
 if __name__ =="__main__":
     res = [] 
-    for i in xrange(1000):
+    for i in xrange(10000):
         
         nums = [random.randint(-10, 40) for x in xrange(100)]
-        select(nums)
+        selection(nums)
         res.append(test(nums))
     
     print("%s Pass."%(res.count(True)))
