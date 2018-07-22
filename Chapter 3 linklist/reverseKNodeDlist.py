@@ -36,6 +36,6 @@ if __name__ == "__main__":
     
     head.prev = None
     printlist(head)
-    head = reverseKNode(head, 4)
+    head = reverseKNode(head, 2)
     printlist(head)
              

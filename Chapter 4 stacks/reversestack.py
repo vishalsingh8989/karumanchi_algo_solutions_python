@@ -11,7 +11,21 @@ import sys
 
 from stacks import *
 
+def insertAtBottom(st, num):
+    if st.size() == 0 :
+        st.push(num)
+    else:
+        n = st.pop()
+        insertAtBottom(st, num)
+        st.push(n)
 
+def reversestack1(st):
+    if st.size() > 0:
+        num = st.pop()
+        reversestack1(st)
+        insertAtBottom(st, num)
+    
+#O(n) space
 def reversestack(st):
     t = Stack()
     while st.size() !=0:
@@ -27,6 +41,9 @@ if __name__ == "__main__":
         st.push(x)
     st.printstack()
     st = reversestack(st)
+    print("******************8")
+    st.printstack()
+    reversestack1(st)
     print("******************8")
     st.printstack()
 
