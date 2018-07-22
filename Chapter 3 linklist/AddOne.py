@@ -27,32 +27,45 @@ def addOne(head):
     num1 = getNum(head)
     head = reverseList(head)
     curr = head
+    carry = 1
+    prev = None
     while curr is not None:
-        curr.data = curr.data + 1
-        if curr.data == 10:
-            curr.data = 0
-            curr = curr.next
-        else:
-            break
+        sum = carry + curr.data
+        carry = 1 if sum >=  10 else 0
+        
+        sum = sum % 10
+        curr.data = sum
+        
+        prev = curr
+        curr = curr.next
+    
+    if carry >= 1:
+        prev.next = Node(carry, None)
+        
     head = reverseList(head)
     num2 = getNum(head)
-    print(num1, num2)
-    return True if num2  ==  num1 + 1 else False
+    return num1, num2
+
+def test(num1 , num2):
+    return True if num2 == num1 +1 else False
     
 if __name__ == "__main__":
     head = None
     res = []
-    for i in xrange(300):
+    for i in xrange(300000):
         head = None
-        size = random.randint(3,9)
+        size = random.randint(3,18)
         for i in xrange(size, 0, -1):
             if i == size:
                 head = Node(random.randint(1,9), head)
             else:
                 head = Node(random.randint(0,9), head) 
             
-        #printlist(head)
-        res.append(addOne(head))
+        num1, num2 = addOne(head)
+        truth = test(num1, num2)
+        if not truth:
+            print(num1, num2)
+        res.append(truth)
         
     print("\n%s Pass."%(res.count(True)))
     print("%s Fail."%(res.count(False)))

@@ -22,15 +22,28 @@ def isLinkListSorted(head):
         
     return True
 
+def printlistrev(tail):
+    print("\nLink list :" ,end = " : ")
+    start = tail
+    while tail is not None and tail.prev is not start:
+        print(tail, end = " -> ")
+        tail = tail.prev
+    if tail is not None:
+        print
+
 def printlist(head):
     print("\nLink list :" ,end = " : ")
     start = head
+    last = head
     while head is not None and head.next is not start:
         print(head, end = " -> ")
+        last = head
         head = head.next
+        
     if head is not None:
         print(str(head.data) + " -> start", end = " -> ")
-    print()   
+    print()
+    return last   
        
 class DoubleNode:
     def __init__(self, data, prev, next):
