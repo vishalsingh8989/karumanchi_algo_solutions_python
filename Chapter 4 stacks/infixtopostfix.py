@@ -31,25 +31,33 @@ def isgreater(val1, val2):
 
 
 def infixToPostfix(equation = ""):
-    stack = Stack()
+    st = Stack()
+    res = ""
+    
     for charac in equation:
-        #stack.printstack()
-        if charac.isalpha(): # if operand then print
-            sys.stdout.write("%s"%charac)
-        elif charac == "(": # if opening bracket then push to stack
-            stack.push(charac)
-        elif charac == ")": #if closing bracket then pop till opening bracket
-            while stack.size() !=0 and stack.peek() != '(':
-                top = stack.pop()
-                sys.stdout.write("%s"%top)
-            if not stack.size() == 0 and stack.peek() != '(':
-                return -1
-            else:
-                stack.pop()
+        #print(charac)
+        if charac.isalpha():
+            res = res + charac
+        elif charac == "(":
+            st.push(charac)
+        elif charac == ")":
+            while st.size() != 0 and st.peek() != "(":
+                res = res + st.pop()
+            st.pop()
+            
         else:
-            while stack.size() !=0 and isgreater(stack.peek(), charac):
-                sys.stdout.write("%s"%stack.pop())
-            stack.push(charac)
+            while st.size() != 0 and isgreater(st.peek(), charac):
+                res = res +st.pop()
+            st.push(charac)
+        
+        
+    while st.size() > 0 :
+        res = res + st.pop()
+    
+    return res
+            
+                
+            
     
 
     while stack.size()!=0:
@@ -60,5 +68,5 @@ def infixToPostfix(equation = ""):
 
 if __name__ == "__main__":
     exp = "a+b*(c^d-e)^(f+g*h)-i"
-    infixToPostfix(exp)
+    print(infixToPostfix(exp))
 
