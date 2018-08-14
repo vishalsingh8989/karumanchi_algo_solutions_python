@@ -15,29 +15,30 @@ price    | 1   5   8   9  10  17  17  20
 def cutRodRecursive(prices, size):
     """
     """
-    if size <= 0: # if size of the rod is less than zero then no money.
+    if size <=0 :
         return 0
-
-    max_val = -1 ## start from lowest     
-    for i in xrange(size): #try all and pick max profit. 
-        max_val = max(max_val , prices[i] + cutRodRecursive(prices, size - i - 1))
-    return max_val
+    
+    maxval = -1
+    for i in xrange(size):
+        maxval = max(maxval, prices[i] + cutRodDp(prices, size-i-1))
+    return maxval
 
 
 def cutRodDp(prices, size):
     """ Dynamic programming
     """
-    if size <=0:
+    
+    if size <=0 :
         return 0
     
-    dp = [0] *(size + 1)
+    dp = [0]*(size + 1)
     
-    for len in xrange(1, size + 1):
-        max_val = -1
-        for j in xrange(0, len):
-            max_val = max(max_val, prices[j] + dp[len-j-1]) 
-        dp[len] = max_val
     
+    for i in xrange(1, size + 1):
+        maxval = -1
+        for j in xrange(i):
+            maxval = max(maxval ,  dp[i-j-1] + prices[j])
+        dp[i] = maxval
     print(dp)
     return dp[-1]
             

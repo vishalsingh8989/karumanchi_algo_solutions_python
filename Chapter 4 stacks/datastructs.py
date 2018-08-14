@@ -12,14 +12,14 @@ class TreeNode:
         if self.right is None:
             right =  "right(None)"
         else:
-            right = "right(" +str(self.right.val)+ ")"
+            right = "right(" +str(self.right.data)+ ")"
              
         if self.left is None:
             left = "left(None)"
         else:
-            left = "left(" +str(self.left.val)+ ")"
+            left = "left(" +str(self.left.data)+ ")"
             
-        rpr = "[ " + left + ", " +str(self.val) + ", " + right + " ]" 
+        rpr = "[ " + left + ", " +str(self.data) + ", " + right + " ]" 
         return rpr
         
     def visit(self):
@@ -78,7 +78,7 @@ class TreeNode:
         """
         # get height of tree
         total_layers = self.getHeight()
-        print("Total layers", total_layers)
+        
         tree = deepcopy(self)
     
         tree.fillTree(total_layers)
@@ -195,6 +195,7 @@ class TreeNode:
     
           # increase layer index
           gen += 1
+        print()
           
 
 class BTNode:
@@ -230,7 +231,11 @@ def stringToTreeNode(input):
     front = 0
     index = 1
     while index < len(inputValues):
-        node = nodeQueue[front]
+        try:
+            node = nodeQueue[front]
+        except:
+            print(front, len(nodeQueue), nodeQueue, inputValues)
+            
         front = front + 1
 
         item = inputValues[index]

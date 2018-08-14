@@ -20,5 +20,7 @@ def SieveOfEratosthenes(n):
 
 if __name__ == "__main__":
     print(SieveOfEratosthenes(100))
+    l = [1]
+    l.sort(cmp=None, key=None, reverse=False)
     
     
