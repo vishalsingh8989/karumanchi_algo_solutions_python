@@ -13,13 +13,14 @@ def selection(nums):
     for i in xrange(size):
         min_idx = i
         for j in xrange(i+1, size):
-            if nums[min_idx] > nums[j]:
+            if nums[min_idx] >  nums[j]:
                 min_idx = j
-        nums[i] , nums[min_idx] = nums[min_idx], nums[i] 
+        
+        nums[i], nums[min_idx] = nums[min_idx], nums[i]
 
 if __name__ =="__main__":
     res = [] 
-    for i in xrange(10000):
+    for i in xrange(1000):
         
         nums = [random.randint(-10, 40) for x in xrange(100)]
         selection(nums)

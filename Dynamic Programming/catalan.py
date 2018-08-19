@@ -1,3 +1,13 @@
+"""
+
+Or use T(n) = (2n)! / (n+1)!n! # geeksforgeeks
+
+
+and Labelled trees
+
+Number of Labeled Tees = (Number of unlabeled trees) * n!
+                       = [(2n)! / (n+1)!n!]  × n!
+"""
 def catalonRec(n):
     if n <= 1:
         return 1

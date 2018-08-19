@@ -7,39 +7,36 @@ import time
 
 
 
-def partition(nums, low, high):
+
+def partition(nums,  low, high):
     
-    pivot  = nums[low]
+    
+    pivot = nums[low]
     i = low
     j = high
     
     while True:
+        while i < high and nums[i] <= pivot:
+            i += 1
         
-        while i <  high  and nums[i]  <= pivot:
-            i +=1
-            
-        while j > low and nums[j] >  pivot:
-            j -=1
-            
+        while j >= 0 and nums[j] >  pivot:
+            j -= 1
+        
         if i >= j:
             break
-        
-        nums[i] , nums[j] = nums[j] , nums[i]
+        nums[i], nums[j] = nums[j], nums[i]
     
-    nums[j] , nums[low] = nums[low], nums[j]
     
+    nums[low], nums[j] = nums[j], nums[low]
+
     return j
     
-
-
-def quicksort(nums, low, high):
-    if low< high:
-        
-        p = partition(nums, low, high)
-        #print(nums, p)
-        quicksort(nums, low, p-1)
-        quicksort(nums, p+1, high)
+def quickSort(nums, low, high):
     
+    if low < high:
+        p = partition(nums, low, high)
+        quickSort(nums, low, p-1)
+        quickSort(nums, p+1, high)
 
 if __name__ =="__main__":
     

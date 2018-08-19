@@ -23,8 +23,8 @@ if __name__ == "__main__":
     res = []
     start = time.time()
     
-    for i in xrange(1000):
-        size = random.randint(2, 1000)
+    for i in xrange(100):
+        size = random.randint(2, 100)
         nums = [random.randint(-10, 1000) for _ in xrange(size)]
         #print(nums)
         nums = bubblesort(nums)

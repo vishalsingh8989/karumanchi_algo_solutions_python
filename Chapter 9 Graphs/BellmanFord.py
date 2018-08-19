@@ -15,6 +15,7 @@ class Graph:
     
     def isNegativeCycle(self):
         
+        
         visited = [False]*self.V
         dist = [maxint]*self.V
         
@@ -26,6 +27,7 @@ class Graph:
                 for v, w in self.graph[u].iteritems():
                     if  dist[u] + w  < dist[v] :
                         dist[v] = dist[u] + w
+        
         
         print(dist)
         

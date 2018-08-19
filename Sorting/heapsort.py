@@ -4,34 +4,35 @@ import random
 import time
 
 
-def heapfiy(nums, size, i):
+
+def heapify(nums, size, i):
     
     
-    left_child = 2*i +1
-    right_child = 2*i +2
     largest = i
+    left_child = 2*i+1
+    right_child = 2*i+2
     
+    if left_child <  size and nums[left_child] >  nums[largest]:
+        largest = left_child  
     
-    if left_child < size  and nums[largest] < nums[left_child]:
-        largest = left_child
-        
-    if right_child <  size and nums[largest] <  nums[right_child]:
+    if right_child <  size and nums[right_child] >  nums[largest]:
         largest = right_child
     
-    if largest  != i:
-        nums[largest] , nums[i] = nums[i] , nums[largest]
-        heapfiy(nums, size, largest)
-    
+    if largest != i :
+        nums[i], nums[largest] = nums[largest] , nums[i]
+        heapify(nums, size, largest)
+        
+
 
 def heapsort(nums):
     size = len(nums)
-    for i in xrange(size/2 +1, -1 , -1):
-        heapfiy(nums, size, i)
+    for i in xrange(size/2 + 1 ,  -1 , -1):
+        heapify(nums, size, i)
     
     
-    for i in xrange(size-1, -1 ,-1):
-        nums[i] , nums[0] = nums[0], nums[i]
-        heapfiy(nums, i, 0)
+    for i in xrange(size - 1, -1, -1):
+        nums[i], nums[0] = nums[0], nums[i]
+        heapify(nums, i, 0)
     
 
 if __name__ == "__main__":

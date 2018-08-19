@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//Chapter\ 9\ Graphs/DAGPathCount.py=utf-8
+encoding//Chapter\ 9\ Graphs/Dijkstra.py=utf-8
 encoding//Chapter\ 9\ Graphs/KrushalMST.py=utf-8
 encoding//Chapter\ 9\ Graphs/LevelNodeCount.py=utf-8
 encoding//Chapter\ 9\ Graphs/MinStepToArrayEnd.py=utf-8
@@ -9,3 +10,4 @@ encoding//Chapter\ 9\ Graphs/PrintMinSources.py=utf-8
 encoding//Chapter\ 9\ Graphs/SamePath.py=utf-8
 encoding//Chapter\ 9\ Graphs/TransitiveClosure.py=utf-8
 encoding//Chapter\ 9\ Graphs/findMotherVertice.py=utf-8
+encoding//Dynamic\ Programming/maxSumSubArray.py=utf-8
