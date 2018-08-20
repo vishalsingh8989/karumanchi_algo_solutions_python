@@ -20,7 +20,8 @@ def iterativePreorder(root):
 
 
 if __name__ == "__main__":
-    nums = [3,2,4,5,10,12,7,8,5,1,9,6]
+    nums = [3,2,4,5,10,12,7,8,5,1,9,6, 11,13,14]
+    
     root = None
     for i in xrange(len(nums)):
         root = insert(root, nums[i])

@@ -4,28 +4,26 @@ from insertNode import insert
 
 
 def iterativeInorder(root):
-    
-    flag = True
+    flag =  True
     
     stack = []
     
-    while  flag:
-        
+    while flag:
         if root is not None:
             stack.append(root)
             root = root.left
-        
         else:
-            if stack :
+            
+            if stack:
                 root = stack.pop()
                 print(root.data, end = " , ")
                 root = root.right
             else:
-                flag = False                
+                flag = False
                 
 
 if __name__ == "__main__":
-    nums = [3,2,4,5,10,12,7,8,5,1,9,6]
+    nums = [3,2,4,5,10,12,7,8,5,1,9,6, 11,13,14]
     root = None
     for i in xrange(len(nums)):
         root = insert(root, nums[i])

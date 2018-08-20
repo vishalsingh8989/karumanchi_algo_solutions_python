@@ -76,6 +76,7 @@ class Node:
     gen = 1 
     count = 0
     # BFS main
+    print("")
     while not queue.isEmpty():
       # copy queue
       # 
