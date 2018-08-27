@@ -183,6 +183,8 @@ class Node:
             data = node.data
             if type(node.data) is int:
                 data = str(node.data)
+            elif node.data is None:
+                data = '   x'
             print (" " * (spaces_mid-extra_spaces)) + (dash_left * dash_count) + (data) + (dash_right * dash_count),
         # ----------------------------->
 

@@ -34,5 +34,5 @@ def countPallindromeSubseqDp(string):
         
 
 if __name__ == "__main__":
-    string = "GEEKSFORGEEKS"
+    string = "aabaa"
     print(countPallinDroneSubSeq(string, 0, len(string)-1), countPallindromeSubseqDp(string))

@@ -1,4 +1,20 @@
 
+def minJumpsRec(steps, l, h):
+    if l == h :
+        return 0
+    
+    if steps[l] == 0 :
+        return float('inf')
+    
+    min_jumps = float('inf')
+    for i in xrange(l+1, h + 1):
+        if i <  l + steps[l] + 1:
+            jumps = minJumpsRec(steps, i, h)
+            if jumps != float('inf') and jumps + 1 < min_jumps:  
+                min_jumps = jumps + 1
+    return min_jumps
+    
+
 
 def minJumps(steps):
     """
@@ -45,7 +61,7 @@ def minJumpOn(steps):
 if __name__ == "__main__":
     arr = [1, 3, 6, 1, 0, 9]
     print('Minimum number of jumps to reach',
-      'end is', minJumps(arr), minJumpOn(arr))
+      'end is', minJumps(arr), minJumpOn(arr), minJumpsRec(arr, 0, len(arr)-1))
     
     
     
