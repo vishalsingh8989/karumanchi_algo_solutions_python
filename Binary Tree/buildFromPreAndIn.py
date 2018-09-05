@@ -5,6 +5,7 @@ Let us consider the below traversals:
 Inorder sequence: D B E A F C
 Preorder sequence: A B D E C F
 """
+
 from __future__ import print_function
 from tree import Node
 from insertNode import insert
