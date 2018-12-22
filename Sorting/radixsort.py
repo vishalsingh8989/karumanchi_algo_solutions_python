@@ -67,8 +67,8 @@ if __name__ == "__main__":
     res = []
     start = time.time()
    
-    for _ in xrange(2000):
-        size = random.randint(1,100)
+    for _ in xrange(100000):
+        size = random.randint(10,200)
         nums = [random.randint(0,200) for _ in xrange(size)]
         
         r(nums)

@@ -6,21 +6,21 @@ class Graph:
     def __init__(self, vertices):
         self.V = vertices
         self.graph = defaultdict(list)
+        
         self.inDegree = [0]*self.V
     
     def addEdge(self, u, v):
         self.graph[u].append(v)
+        
         self.inDegree[v] += 1
-    
-    
-    
-    
+        
+
     def topologicalSort(self):
         """
         """
-        
-        
+             
         queue = []
+        
         for i in xrange(self.V):
             if self.inDegree[i] == 0:
                 queue.append(i)
@@ -29,6 +29,7 @@ class Graph:
             
             u = queue.pop(0)
             print(str(u) + "--> ", end = " ")
+            
             for v in self.graph[u]:
                 self.inDegree[v] -=1
                 if self.inDegree[v] == 0:

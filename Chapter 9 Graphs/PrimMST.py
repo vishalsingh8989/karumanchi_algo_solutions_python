@@ -9,6 +9,8 @@ Algorithm
 ….b) Include u to mstSet.
 ….c) Update key value of all adjacent vertices of u. To update the key values, iterate through all adjacent vertices. For every adjacent vertex v, if weight of edge u-v is less than the previous key value of v, update the key value as weight of u-v
 
+Time :  O(E log(V))
+
 """
 
 
@@ -43,17 +45,16 @@ class Graph:
     
     
     def primMST(self):
-        
+        """find MST from a graph
+        """
         
         parent = [None]*self.V
         key = [sys.maxint]*self.V
         mstSet = [False] *self.V
         
-        
         key[0] = 0
         parent[0] = -1
-        
-        
+    
         for count in range(self.V):
             
             u = self.minKey(key, mstSet)

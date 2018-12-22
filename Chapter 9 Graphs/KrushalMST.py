@@ -14,6 +14,8 @@ Below are the steps for finding MST using Kruskal’s algorithm
 2. Pick the smallest edge. Check if it forms a cycle with the spanning tree formed so far. If cycle is not formed, include this edge. Else, discard it.
 3. Repeat step#2 until there are (V-1) edges in the spanning tree.
 
+
+Time :  O(E log(n))
 """
 
 
@@ -24,6 +26,8 @@ __version__ = "1.0"
 __maintainer__ = "Vishal Jasrotia"
 __email__ = "jasrotia.vishal@stonybrook.edu"
 __status__ = ""
+
+
 from _collections import defaultdict
 
 
@@ -41,6 +45,13 @@ class Graph:
         self.weights.append([u,v,w])
     
     def union(self, parent, x,y):
+        """
+        Bounded by O(log(n))
+        total changes is number of vertices and everytime set size become atleast double.
+        So, n*log(n)
+        
+        """
+        
         x_set = self.find(parent, x)
         y_set = self.find(parent, y)
         parent[x_set] = y_set
@@ -60,9 +71,8 @@ class Graph:
         edge_count = 0
         mst_weight = 0
         for edge_det in self.weights:
-            u = edge_det[0]
-            v = edge_det[1]
-            w = edge_det[2]
+            u,v, w = edge_det
+            
             x = self.find(parent, u)
             y = self.find(parent, v)
             
@@ -71,6 +81,7 @@ class Graph:
                 mst_weight += w
                 self.mst.addEdge(u, v, w)
                 self.union(parent,x, y)
+        
         
         print("Total weight of MST  " , mst_weight)
         for edge_a, adj  in self.mst.graph.iteritems():

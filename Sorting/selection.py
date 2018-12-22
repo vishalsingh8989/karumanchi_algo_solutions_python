@@ -9,14 +9,18 @@ from sorttest import test
 def selection(nums):
     """ pick small and put in front.
     """
-    size = len(nums)
-    for i in xrange(size):
+    length = len(nums)
+    for i in xrange(length):
         min_idx = i
-        for j in xrange(i+1, size):
-            if nums[min_idx] >  nums[j]:
+        for j in xrange(i+1, length):
+            if nums[j] <  nums[min_idx]:
                 min_idx = j
         
+        
         nums[i], nums[min_idx] = nums[min_idx], nums[i]
+    
+    return nums
+            
 
 if __name__ =="__main__":
     res = [] 

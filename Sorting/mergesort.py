@@ -47,7 +47,7 @@ def mergesort(nums, low, high):
     """
     """
     if low< high:
-        mid = (low + (high-1))/2
+        mid = (low+high)/2
         mergesort(nums, low, mid)
         mergesort(nums, mid+1, high)
         merge(nums, low, mid, high)

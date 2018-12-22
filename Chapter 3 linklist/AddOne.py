@@ -4,6 +4,11 @@ from linklist import  SimpleNode as Node
 from linklist import printlist
 import random
 
+
+import sys
+
+print(sys.version)
+print(sys.version_info)
 def reverseList(head):
     prev = None
     curr = head
@@ -52,7 +57,7 @@ def test(num1 , num2):
 if __name__ == "__main__":
     head = None
     res = []
-    for i in xrange(300000):
+    for i in xrange(3000):
         head = None
         size = random.randint(3,18)
         for i in xrange(size, 0, -1):

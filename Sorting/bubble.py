@@ -6,15 +6,13 @@ import time
 
     
 def bubblesort(nums):
-    size = len(nums)
-    for i in xrange(size):
-        for j in xrange(size):
-            if nums[j] > nums[i]:
+    length = len(nums)
+    for i in xrange(length):
+        for j in xrange(length):
+            if nums[j] >  nums[i]:
                 nums[i], nums[j] = nums[j], nums[i]
-        
-    return nums 
-
-
+    return nums
+    
 
 
 

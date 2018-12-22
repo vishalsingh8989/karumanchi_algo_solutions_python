@@ -79,6 +79,7 @@ if __name__ == "__main__":
     g.addEdge(2, 5)
     g.addEdge(5, 6)
     g.addEdge(3, 4)
+    #g.addEdge(4, 1)
     
     
     print(g.isCyclic())

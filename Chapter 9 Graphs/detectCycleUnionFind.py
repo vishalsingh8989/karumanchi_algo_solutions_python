@@ -57,6 +57,7 @@ if __name__ == "__main__":
     g.addEdge(1, 3)
     g.addEdge(1, 5)
     g.addEdge(3, 4)
+    g.addEdge(3, 1)
     if g.isCyclic():
         print "Graph contains cycle"
     else :

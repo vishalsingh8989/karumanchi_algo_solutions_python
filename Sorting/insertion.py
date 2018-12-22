@@ -6,14 +6,18 @@ import time
 
 def insert(nums):
 
-    size = len(nums)
-    for i in xrange(1, size):
+    length = len(nums)
+    
+    for i in xrange(1, length):
         key = nums[i]
         j = i - 1
-        while j >= 0 and key <  nums[j]:
-            nums[j+1] = nums[j]
+        while j >= 0 and nums[j]  > key:
+            nums[j + 1] = nums[j]
             j = j - 1
-        nums[j+1] = key 
+        
+        nums[j+1] = key
+    
+    return nums
     
          
 

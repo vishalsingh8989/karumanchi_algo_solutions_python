@@ -8,45 +8,52 @@ import time
 
 
 
-def partition(nums,  low, high):
-    
-    
-    pivot = nums[low]
+def partition(nums, low, high):
+    pivot  = low
+    #pivot  = random.randint(low, high)
     i = low
     j = high
     
+    
     while True:
-        while i < high and nums[i] <= pivot:
+        
+        while i <= high and nums[i] <= nums[pivot]:
             i += 1
         
-        while j >= 0 and nums[j] >  pivot:
-            j -= 1
+        while j >= 0 and nums[j] > nums[pivot]:
+            j -=1
         
         if i >= j:
             break
-        nums[i], nums[j] = nums[j], nums[i]
+        
+        nums[i], nums[j] = nums[j] , nums[i]
     
+    nums[pivot] , nums[j] = nums[j], nums[pivot]
     
-    nums[low], nums[j] = nums[j], nums[low]
-
     return j
-    
+
+
+
+
 def quickSort(nums, low, high):
     
     if low < high:
+        
         p = partition(nums, low, high)
-        quickSort(nums, low, p-1)
-        quickSort(nums, p+1, high)
+        quickSort(nums, low, p - 1)
+        quickSort(nums, p + 1, high)
+        
+        
 
 if __name__ =="__main__":
     
     res = []
     start = time.time()
-    for _ in xrange(1000):
-        size = random.randint(1,100)
-        nums = [random.randint(-10,20) for _ in xrange(size)]
+    for _ in xrange(100000):
+        size = random.randint(10,200)
+        nums = [random.randint(-100,100) for _ in xrange(size)]
         #print(nums)
-        quicksort(nums, 0, len(nums) - 1)
+        quickSort(nums, 0, len(nums) - 1)
         #print(nums)
         res.append(test(nums))
     
@@ -58,7 +65,14 @@ if __name__ =="__main__":
     print("Time :  %s"%(end-start))
         
         
-        
+# low
+# 37.67  
+# 48.67
+# 35.49  
+# 37.56
+#  35.63
+
+
     
     
 

@@ -31,22 +31,28 @@ def partition(nums, low, high):
 def iterativeQuickSort(nums, low, high):
      
     stack = []
+    
     stack.append(low)
     stack.append(high)
     
-    
-    while stack :
+    while stack:
+        
         h = stack.pop()
         l = stack.pop()
         
         p = partition(nums, l, h)
         
-        if p + 1 <  h:
+        if p + 1 < h:
             stack.append(p+1)
             stack.append(h)
+        
         if p - 1 > l:
             stack.append(l)
-            stack.append(p - 1)
+            stack.append(p-1)
+    
+    
+    
+    
             
              
             

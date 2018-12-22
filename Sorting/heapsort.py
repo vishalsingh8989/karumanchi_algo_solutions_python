@@ -5,34 +5,36 @@ import time
 
 
 
-def heapify(nums, size, i):
-    
-    
+
+def heapify(nums, length, i):
     largest = i
-    left_child = 2*i+1
-    right_child = 2*i+2
     
-    if left_child <  size and nums[left_child] >  nums[largest]:
-        largest = left_child  
+    left_child = 2*i + 1
+    right_child = 2*i + 2
     
-    if right_child <  size and nums[right_child] >  nums[largest]:
+    if left_child <  length and nums[left_child] >  nums[largest]:
+        largest = left_child
+        
+    if right_child <  length  and nums[right_child] >  nums[largest]:
         largest = right_child
     
-    if largest != i :
-        nums[i], nums[largest] = nums[largest] , nums[i]
-        heapify(nums, size, largest)
+    if i != largest:
+        nums[i], nums[largest] = nums[largest],nums[i]
+        heapify(nums, length, largest)
         
 
 
 def heapsort(nums):
-    size = len(nums)
-    for i in xrange(size/2 + 1 ,  -1 , -1):
-        heapify(nums, size, i)
+    
+    length = len(nums)
+    for i in xrange(length /2 + 1, -1, -1):
+        heapify(nums, length, i)
     
     
-    for i in xrange(size - 1, -1, -1):
-        nums[i], nums[0] = nums[0], nums[i]
+    for i in xrange(length - 1, -1 , -1):
+        nums[0], nums[i] = nums[i], nums[0]
         heapify(nums, i, 0)
+    
     
 
 if __name__ == "__main__":
@@ -40,11 +42,10 @@ if __name__ == "__main__":
     res = []
     start = time.time()
    
-    for _ in xrange(1000):
+    for _ in xrange(100):
         size = random.randint(1,100)
         nums = [random.randint(-10,20) for _ in xrange(size)]
         heapsort(nums)
-        #print(nums)
         res.append(test(nums))
      
      

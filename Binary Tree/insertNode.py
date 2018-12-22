@@ -1,4 +1,4 @@
-from tree import Node as TreeNode
+from tree import Node 
 
 def stringToTreeNode(input):
     #input = input.strip()

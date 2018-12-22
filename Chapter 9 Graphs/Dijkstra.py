@@ -53,7 +53,7 @@ class Graph:
         self.printDijkstra(src, dist, parent)
 
     def printDijkstra(self, src, dist, parent):
-        
+        print("Shortest path from node : %s"%(src))
         for v in xrange(len(dist)):
             if v != src: 
                 print(str(parent[v]) + " ----  " + str(v) + " =  " + str(dist[v]))

@@ -57,5 +57,5 @@ if  __name__ == "__main__":
     ll.insertAtBegin(14)
     ll.insertAtBegin(15)
     ll.printLinklist()
-    ll._head = reverseKNode(ll.getHead(), 3)
+    ll._head = reverseKNode(ll.getHead(), 2)
     ll.printLinklist()
